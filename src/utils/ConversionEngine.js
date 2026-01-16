@@ -104,7 +104,10 @@ class ConversionEngine {
         if (parts.length === 3) {
           const day = parts[0].trim().padStart(2, '0');
           const month = parts[1].trim().padStart(2, '0');
-          const year = parts[2].trim();
+          let year = parts[2].trim();
+          if (year.length === 2) {
+            year = '20' + year;
+          }
           return `${day}/${month}/${year}`;
         }
       }
