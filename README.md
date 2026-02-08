@@ -1,70 +1,147 @@
-# Getting Started with Create React App
+# 🔐 E-Invoice Converter Pro - PWA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A professional Progressive Web App for converting CSV files to E-Invoice V4 JSON format with **offline license protection**.
 
-## Available Scripts
+## ✨ Features
 
-In the project directory, you can run:
+- 🔒 **Device-Locked Licensing** - Secure license keys tied to specific devices
+- 📱 **Progressive Web App** - Install on desktop and mobile devices
+- 🌐 **Offline Capable** - Works completely offline after activation
+- 🚀 **Fast Conversion** - Instant CSV to JSON conversion
+- 🎨 **Modern UI** - Beautiful, responsive design
+- 🔐 **Encrypted Storage** - License data stored securely in IndexedDB
+- ✅ **E-Invoice V4 Compliant** - Follows official schema
 
-### `npm start`
+## 🚀 Quick Start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### For Users
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Visit: **https://HrishabhPurohit.github.io/einvoice-web-converter**
+2. Click "Show Device ID" and copy your device fingerprint
+3. Contact us to purchase a license: **+91-8328447318**
+4. Enter your license key to activate
+5. Install as PWA (optional) for offline use
 
-### `npm test`
+### For Developers
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+# Install dependencies
+npm install
 
-### `npm run build`
+# Run development server
+npm start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Build for production
+npm run build
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Deploy to GitHub Pages
+npm run deploy
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🔑 License Types
 
-### `npm run eject`
+### Lifetime License
+- **Price**: ₹1,999
+- One-time payment
+- Unlimited use
+- Never expires
+- Tied to one device
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Annual License
+- **Price**: ₹999/year
+- Yearly subscription
+- Includes updates
+- Renews annually
+- Tied to one device
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📖 Documentation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **[PWA Deployment Guide](PWA-DEPLOYMENT-GUIDE.md)** - Complete deployment instructions
+- **[License Generation Guide](LICENSE-GENERATION-GUIDE.md)** - How to generate license keys
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🛠️ Tech Stack
 
-## Learn More
+- **React** - UI framework
+- **IndexedDB** - Encrypted license storage
+- **Service Worker** - Offline caching
+- **CryptoJS** - Encryption & device fingerprinting
+- **Papa Parse** - CSV parsing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🔒 Security Features
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **Device Fingerprinting** - Unique device identification
+2. **AES Encryption** - Secure license storage
+3. **Checksum Validation** - Prevents fake keys
+4. **Offline Validation** - No internet required after activation
+5. **Expiry Checking** - Automatic license validation
 
-### Code Splitting
+## 📱 PWA Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Desktop (Chrome/Edge)
+1. Visit the app
+2. Click install icon (⊕) in address bar
+3. Click "Install"
 
-### Analyzing the Bundle Size
+### Mobile (Android)
+1. Open in Chrome
+2. Tap menu (⋮) → "Add to Home Screen"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### iPhone/iPad
+1. Open in Safari
+2. Tap share icon → "Add to Home Screen"
 
-### Making a Progressive Web App
+## 🧪 Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Generate Test License
 
-### Advanced Configuration
+```bash
+# Generate sample device fingerprint
+node generate-license.js --sample
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# Generate lifetime license
+node generate-license.js <device-fingerprint> 0000
 
-### Deployment
+# Generate annual license (expires Dec 2025)
+node generate-license.js <device-fingerprint> 1225
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 📞 Support
 
-### `npm run build` fails to minify
+Need a license or have questions?
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Contact**: +91-8328447318
+
+## 📄 License
+
+© 2025 E-Invoice Converter Pro. All rights reserved.
+
+---
+
+## 🎯 For License Administrators
+
+### Generate Customer License Keys
+
+```bash
+# Customer sends you their Device ID from the app
+# Generate lifetime license
+node generate-license.js <customer-device-id> 0000
+
+# Generate annual license
+node generate-license.js <customer-device-id> 1225
+```
+
+See [LICENSE-GENERATION-GUIDE.md](LICENSE-GENERATION-GUIDE.md) for detailed instructions.
+
+## 🔄 Version History
+
+### v1.0.0 (Current)
+- ✅ PWA with offline support
+- ✅ Device-locked licensing system
+- ✅ Encrypted license storage
+- ✅ E-Invoice V4 conversion
+- ✅ Modern responsive UI
+- ✅ Show Device ID feature
+
+---
+
+**Live App**: https://HrishabhPurohit.github.io/einvoice-web-converter
