@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import ConversionEngine from './utils/ConversionEngine';
+import LicenseScreen from './components/LicenseScreen';
+import licenseManager from './utils/LicenseManager';
 
 function App() {
   const [file, setFile] = useState(null);
@@ -8,6 +10,43 @@ function App() {
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
   const [dragActive, setDragActive] = useState(false);
+  const [isLicensed, setIsLicensed] = useState(false);
+  const [licenseInfo, setLicenseInfo] = useState(null);
+  const [checkingLicense, setCheckingLicense] = useState(true);
+
+  useEffect(() => {
+    checkLicense();
+  }, []);
+
+  const checkLicense = async () => {
+    setCheckingLicense(true);
+    const validation = await licenseManager.validateLicense();
+    setIsLicensed(validation.valid);
+    if (validation.valid) {
+      setLicenseInfo(validation.license);
+    }
+    setCheckingLicense(false);
+  };
+
+  const handleLicenseActivated = (license) => {
+    setIsLicensed(true);
+    setLicenseInfo(license);
+  };
+
+  if (checkingLicense) {
+    return (
+      <div className="App" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '3rem', marginBottom: '20px' }}>⏳</div>
+          <p>Checking license...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isLicensed) {
+    return <LicenseScreen onLicenseActivated={handleLicenseActivated} />;
+  }
 
   const handleDrag = (e) => {
     e.preventDefault();
@@ -97,12 +136,30 @@ function App() {
     }
   };
 
+  const handleDeactivate = async () => {
+    if (window.confirm('Are you sure you want to deactivate this license? You will need to re-enter your license key.')) {
+      await licenseManager.removeLicense();
+      setIsLicensed(false);
+      setLicenseInfo(null);
+    }
+  };
+
   return (
     <div className="App">
       <div className="container">
         <div className="header">
           <h1>E-Invoice Converter</h1>
           <p>Convert CSV to E-Invoice JSON Format (V4)</p>
+          {licenseInfo && (
+            <div className="license-badge">
+              <span className="license-type">
+                {licenseInfo.type === 'lifetime' ? '🔓 Lifetime License' : '📅 Annual License'}
+              </span>
+              <button className="deactivate-btn" onClick={handleDeactivate} title="Deactivate License">
+                ⚙️
+              </button>
+            </div>
+          )}
         </div>
 
         <div
